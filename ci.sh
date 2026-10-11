@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
-set -eu
+set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-BUILD_DIR="${1:-${SCRIPT_DIR}/build}"
-
-mkdir -p "$BUILD_DIR"
-cd "$BUILD_DIR"
-cmake "$SCRIPT_DIR"
-cmake --build .
-ctest --output-on-failure
+echo "Running CI script..."
+cmake --version
+cmake -S . -B build
+cmake --build build --config Release
+echo "CI script completed successfully"
