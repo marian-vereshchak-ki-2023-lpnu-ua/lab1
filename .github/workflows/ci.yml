@@ -3,12 +3,12 @@ name: CI
 on:
   push:
     branches:
-      - develop
+      - feature/develop
       - master
       - main
   pull_request:
     branches:
-      - develop
+      - feature/develop
       - master
       - main
 
