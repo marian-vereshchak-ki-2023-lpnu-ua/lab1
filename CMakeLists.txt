@@ -17,14 +17,17 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(googletest)
 
-add_executable(lab1 main.cpp)
+# Main executable
+add_executable(lab1 main.cpp math_operations.cpp)
 
+# Tests
 file(GLOB TEST_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cpp")
 
 if(TEST_SOURCES)
     enable_testing()
-    add_executable(lab1_tests ${TEST_SOURCES})
-    target_link_libraries(lab1_tests PRIVATE GTest::gtest_main)
+    add_executable(unit_tests ${TEST_SOURCES} math_operations.cpp)
+    target_link_libraries(unit_tests PRIVATE GTest::gtest_main)
+    target_include_directories(unit_tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
     include(GoogleTest)
-    gtest_discover_tests(lab1_tests)
+    gtest_discover_tests(unit_tests)
 endif()
