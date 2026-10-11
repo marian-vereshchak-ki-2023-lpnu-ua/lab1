@@ -1,1 +1,42 @@
+name: CI
 
+on:
+  push:
+    branches:
+      - 'develop'
+      - 'master'
+  pull_request:
+    branches:
+      - 'develop'
+      - 'master'
+
+jobs:
+  cross_build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup CMake
+        uses: lukka/get-cmake@latest
+
+      - name: Run CI script
+        shell: bash
+        run: |
+          if [ -f "./ci.sh" ]; then
+            bash ./ci.sh
+          else
+            echo "CI script not found: ./ci.sh"
+            exit 1
+          fi
+
+      - name: Deploy
+        shell: bash
+        run: |
+          echo "Deploying C++ project on ${{ matrix.os }}"
+          echo "Build completed successfully"
