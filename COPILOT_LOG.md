@@ -41,6 +41,24 @@ int main() {
 - **Status**: ✅ Completed
 - **File**: COPILOT_LOG.md
 
+### 4. Create CMake build configuration
+- **Request**: Create CMakeLists.txt in repository root based on project files
+- **Action**: Added `CMakeLists.txt` for building the C++ project with `main.cpp`
+- **Status**: ✅ Completed
+- **File**: CMakeLists.txt
+
+```cmake
+cmake_minimum_required(VERSION 3.10)
+
+project(lab1 LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+add_executable(lab1 main.cpp)
+```
+
 ## Repository Information
 - **Repository**: marian-vereshchak-ki-2023-lpnu-ua/lab1
 - **Language**: C++ (100%)
