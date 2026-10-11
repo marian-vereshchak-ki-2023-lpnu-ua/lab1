@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.16)
 
 project(lab1 LANGUAGES CXX)
 
@@ -6,20 +6,25 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_executable(lab1 main.cpp)
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
-add_library(math_operations math_operations.cpp)
-target_include_directories(math_operations
-    PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
+include(FetchContent)
+
+FetchContent_Declare(
+    googletest
+    URL "https://github.com/google/googletest/archive/refs/heads/main.zip"
 )
 
-target_link_libraries(lab1 PRIVATE math_operations)
+FetchContent_MakeAvailable(googletest)
 
-find_package(GTest REQUIRED)
+add_executable(lab1 main.cpp)
 
-enable_testing()
+file(GLOB TEST_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cpp")
 
-add_executable(unit_tests tests/unit_tests.cpp)
-target_link_libraries(unit_tests PRIVATE math_operations GTest::gtest_main)
-
-add_test(NAME unit_tests COMMAND unit_tests)
+if(TEST_SOURCES)
+    enable_testing()
+    add_executable(lab1_tests ${TEST_SOURCES})
+    target_link_libraries(lab1_tests PRIVATE GTest::gtest_main)
+    include(GoogleTest)
+    gtest_discover_tests(lab1_tests)
+endif()
