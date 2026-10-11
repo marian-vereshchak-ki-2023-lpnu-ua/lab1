@@ -12,3 +12,7 @@ TEST(MathOperationsTest, AddsNegativeAndPositiveNumbers) {
 TEST(MathOperationsTest, AddsZeroAndZero) {
     EXPECT_EQ(add(0, 0), 0);
 }
+
+TEST(MathOperationsTest, AddsLargeNumbers) {
+    EXPECT_EQ(add(1000000, 2000000), 3000000);
+}
