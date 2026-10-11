@@ -10,30 +10,12 @@
 - **Action**: Created `main.cpp` with basic C++ Hello World program
 - **Status**: ✅ Completed
 - **File**: main.cpp
-- **Commit**: Add main.cpp with Hello World program
-
-```cpp
-#include <iostream>
-
-int main() {
-    std::cout << "Hello World" << std::endl;
-    return 0;
-}
-```
 
 ### 2. Create README with Student Information
 - **Request**: Create a README file with student information
 - **Action**: Created `README.md` with student details
 - **Status**: ✅ Completed
 - **File**: README.md
-- **Commit**: Add README with student information
-
-**Content**:
-```
-Верещак Мар'ян Ігорович
-КІ-409
-2 варіант
-```
 
 ### 3. Save Copilot Request Log
 - **Request**: Add the Copilot request log to Git version control
@@ -41,23 +23,20 @@ int main() {
 - **Status**: ✅ Completed
 - **File**: COPILOT_LOG.md
 
-### 4. Create CMake build configuration
-- **Request**: Create CMakeLists.txt in repository root based on project files
-- **Action**: Added `CMakeLists.txt` for building the C++ project with `main.cpp`
+### 4. Add CMake build configuration
+- **Request**: Create CMakeLists.txt in the repository root
+- **Action**: Added `CMakeLists.txt` for building the C++ project
 - **Status**: ✅ Completed
-- **File**: CMakeLists.txt
 
-```cmake
-cmake_minimum_required(VERSION 3.10)
+### 5. Add math operations and unit tests
+- **Request**: Create `math_operations.h`, `math_operations.cpp`, and `tests/unit_tests.cpp`
+- **Action**: Added integer addition function and corresponding unit tests using Google Test
+- **Status**: ✅ Completed
 
-project(lab1 LANGUAGES CXX)
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
-
-add_executable(lab1 main.cpp)
-```
+### 6. Add Google Test support to CMake
+- **Request**: Update CMakeLists.txt to use Google Test and compile/run unit tests
+- **Action**: Configured CMake to build `unit_tests` with `GTest::gtest_main` and register it with `ctest`
+- **Status**: ✅ Completed
 
 ## Repository Information
 - **Repository**: marian-vereshchak-ki-2023-lpnu-ua/lab1
